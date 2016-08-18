@@ -31,7 +31,6 @@ class ChainCommandPass implements CompilerPassInterface
         $definition = $container->findDefinition('oro_chain_command.chain_command_manager');
 
         $taggedServices = $container->findTaggedServiceIds('oro_chain_command.command_chain.member');
-        var_dump($taggedServices);
         foreach ($taggedServices as $id => $tags) {
             foreach ($tags as $attributes) {
                 $definition->addMethodCall('addCommandToChain', [new Reference($id), $attributes['command_chain']]);

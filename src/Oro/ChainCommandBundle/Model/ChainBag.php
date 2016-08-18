@@ -3,6 +3,7 @@
 namespace Oro\ChainCommandBundle\Model;
 
 use Oro\ChainCommandBundle\Interfaces\CommandBagInterface;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Class ChainBag
@@ -12,9 +13,17 @@ use Oro\ChainCommandBundle\Interfaces\CommandBagInterface;
 class ChainBag implements CommandBagInterface
 {
     /**
-     * @var array
+     * @var CommandChain[]
      */
     private $chains;
+
+    /**
+     * ChainBag constructor.
+     */
+    public function __construct()
+    {
+        $this->chains = [];
+    }
 
     /**
      * {@inheritdoc}
@@ -71,7 +80,10 @@ class ChainBag implements CommandBagInterface
      */
     public function set($key, $value)
     {
-        $this->chains[$key] = $value;
+        if (!$this->has($key)) {
+            $this->chains[$key] = new CommandChain($key, new CommandBag());
+        }
+        $this->chains[$key]->addCommand($value);
     }
 
     /**
@@ -96,5 +108,20 @@ class ChainBag implements CommandBagInterface
     public function clear()
     {
         $this->chains = [];
+    }
+
+    /**
+     * @param Command $command
+     * @return bool|CommandChain
+     */
+    public function hasCommand(Command $command)
+    {
+        foreach ($this->chains as $chain) {
+            if ($chain->hasCommand($command->getName())) {
+                return $chain;
+            }
+        }
+
+        return false;
     }
 }

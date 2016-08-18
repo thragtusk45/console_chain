@@ -3,8 +3,7 @@
 namespace Oro\ChainCommandBundle\Service;
 
 use Oro\ChainCommandBundle\Model\ChainBag;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Oro\ChainCommandBundle\Model\CommandChain;
 
 class ChainCommandManagerService
 {
@@ -13,9 +12,14 @@ class ChainCommandManagerService
      */
     protected $chains;
 
+    public function __construct()
+    {
+        $this->chains = new ChainBag();
+    }
+
     /**
      * @param string $masterCommandName
-     * @return null|string
+     * @return null|CommandChain
      */
     public function getChain($masterCommandName)
     {
@@ -33,5 +37,14 @@ class ChainCommandManagerService
     public function addCommandToChain($command, $masterCommand)
     {
         $this->chains->set($masterCommand, $command);
+    }
+
+    /**
+     * @param $command
+     * @return bool|\Oro\ChainCommandBundle\Model\CommandChain
+     */
+    public function getChainByCommand($command)
+    {
+        return $this->chains->hasCommand($command);
     }
 }
