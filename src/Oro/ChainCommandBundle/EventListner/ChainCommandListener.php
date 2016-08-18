@@ -7,6 +7,7 @@ use Oro\ChainCommandBundle\Service\ChainCommandManagerService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\Console\Input\ArrayInput;
 
 /**
  * Class CommandChainListener
@@ -50,22 +51,21 @@ class ChainCommandListener
 
         if ($chain) {
             $event->disableCommand();
-            $this->logger->debug($chain->getMasterCommandName() .
+            $this->logger->info($chain->getMasterCommandName() .
                 ' is a master command of a command chain that has registered member commands');
 
-            foreach ($chain->getCommandBag()->toArray() as $command) {
-                $this->logger->debug($command->getName() . ' registered as a member of ' .
+            foreach ($chain->getCommandBag()->toArray() as $memberCommand) {
+                $this->logger->info($memberCommand->getName() . ' registered as a member of ' .
                     $chain->getMasterCommandName() . ' command chain');
             }
 
-            $this->logger->debug('Executing ' . $chain->getMasterCommandName() . ' command itself first:');
+            $this->logger->info('Executing ' . $chain->getMasterCommandName() . ' command itself first:');
             $command->run($event->getInput(), $event->getOutput());
 
-            $this->logger->debug('Executing ' . $chain->getMasterCommandName() . ' chain members:');
+            $this->logger->info('Executing ' . $chain->getMasterCommandName() . ' chain members:');
             $this->executeChain($chain, $event);
-            $this->logger->debug('Executing of ' . $chain->getMasterCommandName() . ' chain completed.');
+            $this->logger->info('Executing of ' . $chain->getMasterCommandName() . ' chain completed.');
         }
-
     }
 
     /**
@@ -93,7 +93,7 @@ class ChainCommandListener
     private function executeChain(CommandChain $chain, ConsoleCommandEvent $event)
     {
         foreach ($chain->getCommandBag()->toArray() as $memberCommand) {
-            $memberCommand->run($event->getInput(), $event->getOutput());
+            $memberCommand->run(new ArrayInput([]), $event->getOutput());
         }
 
     }

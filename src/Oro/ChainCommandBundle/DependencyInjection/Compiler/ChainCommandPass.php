@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alexey
- * Date: 13.08.2016
- * Time: 22:12
- */
 
 namespace Oro\ChainCommandBundle\DependencyInjection\Compiler;
 
