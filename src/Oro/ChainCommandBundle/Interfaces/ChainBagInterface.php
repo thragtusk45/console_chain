@@ -1,18 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alexey
- * Date: 16.08.2016
- * Time: 21:29
- */
-
 namespace Oro\ChainCommandBundle\Interfaces;
 
 
 use Oro\ChainCommandBundle\Model\CommandChain;
 use Symfony\Component\Console\Command\Command;
 
-
+/**
+ * Interface ChainBagInterface
+ * Array access for the chain container
+ * @package Oro\ChainCommandBundle\Interfaces
+ * @author Alexey Mezhuev <a.mezhuev@bikeportal.in>
+ */
 interface ChainBagInterface extends \ArrayAccess
 {
     /**

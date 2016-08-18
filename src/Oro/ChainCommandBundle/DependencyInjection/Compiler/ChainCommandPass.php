@@ -22,6 +22,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class ChainCommandPass implements CompilerPassInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->has('oro_chain_command.chain_command_manager')) {

@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 
 /**
  * Class ChainBag
+ * Container for the chains
  * @package Oro\ChainCommandBundle\Model
  * @author <amezhuev@gmail.com>
  */

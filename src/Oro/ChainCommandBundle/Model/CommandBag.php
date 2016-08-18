@@ -6,6 +6,12 @@ namespace Oro\ChainCommandBundle\Model;
 use Oro\ChainCommandBundle\Interfaces\CommandBagInterface;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * Class CommandBag
+ * Container for commands
+ * @package Oro\ChainCommandBundle\Model
+ * @author Alexey Mezhuev <a.mezhuev@bikeportal.in>
+ */
 class CommandBag implements CommandBagInterface
 {
     /**

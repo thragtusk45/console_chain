@@ -10,6 +10,7 @@ use Symfony\Component\Console\Event\ConsoleCommandEvent;
 
 /**
  * Class CommandChainListener
+ * Listens to all commands and processes  the chains
  * @package Oro\ChainCommandBundle\EventListner
  * @author <amezhuev@gmail.com>
  */
@@ -30,6 +31,11 @@ class ChainCommandListener
         $this->chainManager = $chainManager;
     }
 
+    /**
+     * @param ConsoleCommandEvent $event
+     * @throws \Exception
+     * @throws \Symfony\Component\Console\Exception\ExceptionInterface
+     */
     public function onConsoleCommand(ConsoleCommandEvent $event)
     {
         $command = $event->getCommand();
@@ -63,6 +69,7 @@ class ChainCommandListener
     }
 
     /**
+     * Checks if a command is a member of a chain
      * @param Command $command
      * @throws \Exception
      */
@@ -78,6 +85,7 @@ class ChainCommandListener
     }
 
     /**
+     * Executes the command chain
      * @param CommandChain $chain
      * @param ConsoleCommandEvent $event
      * @throws \Symfony\Component\Console\Exception\ExceptionInterface

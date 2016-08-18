@@ -4,6 +4,7 @@ namespace Oro\ChainCommandBundle\Interfaces;
 
 /**
  * Interface CommandBagInterface
+ * Array Access for the bag container
  * @package Oro\ChainCommandBundle\Interfaces
  * @author <amezhuev@gmail.com>
  */
