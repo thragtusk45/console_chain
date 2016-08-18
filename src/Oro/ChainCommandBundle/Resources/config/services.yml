@@ -1,0 +1,9 @@
+services:
+    oro_chain_command.chain_command_manager:
+        class: Oro\ChainCommandBundle\Service\ChainCommandManagerService
+
+    oro_chain_command.console_comand_listener:
+        class: Oro\ChainCommandBundle\EventListner\ChainCommandListener
+        arguments: ["@logger", "@oro_chain_command.chain_command_manager"]
+        tags:
+            - { name: kernel.event_listener, event: console.command}

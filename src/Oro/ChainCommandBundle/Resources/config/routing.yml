@@ -1,0 +1,3 @@
+oro_chain_command_homepage:
+    path:     /
+    defaults: { _controller: OroChainCommandBundle:Default:index }
