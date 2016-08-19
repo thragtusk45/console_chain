@@ -4,7 +4,6 @@ namespace Oro\ChainCommandBundle\Service;
 
 use Oro\ChainCommandBundle\Model\ChainBag;
 use Oro\ChainCommandBundle\Model\CommandChain;
-
 /**
  * Class ChainCommandManagerService
  * Manages all the registered chains

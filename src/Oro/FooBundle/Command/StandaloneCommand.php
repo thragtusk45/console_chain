@@ -1,28 +1,27 @@
 <?php
 
-namespace Oro\BarBundle\Command;
-
+namespace Oro\FooBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class ByeCommand
- * @package Oro\BarBundle\Command
+ * Class StandaloneCommand
+ * @package Oro\FooBundle\Command
  * @author <amezhuev@gmail.com>
  */
-class ByeCommand extends Command
+class StandaloneCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('bar:bye')
-            ->setDescription('Says Bye');
+            ->setName('foo:standalone')
+            ->setDescription('Stands alone');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Bye!');
+        $output->writeln('I stand alone!');
     }
 }
