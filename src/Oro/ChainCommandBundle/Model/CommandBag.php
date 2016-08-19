@@ -21,10 +21,16 @@ class CommandBag implements CommandBagInterface
 
     /**
      * CommandBag constructor.
+     * @param Command[] $commands
      */
-    public function __construct()
+    public function __construct(array $commands = [])
     {
         $this->commands = [];
+        foreach ($commands as $command) {
+            if ($command instanceof Command) {
+                $this->set($command->getName(), $command);
+            }
+        }
     }
 
     /**

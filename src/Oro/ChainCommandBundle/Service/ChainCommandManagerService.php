@@ -4,6 +4,7 @@ namespace Oro\ChainCommandBundle\Service;
 
 use Oro\ChainCommandBundle\Model\ChainBag;
 use Oro\ChainCommandBundle\Model\CommandChain;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Class ChainCommandManagerService
@@ -37,19 +38,19 @@ class ChainCommandManagerService
     }
 
     /**
-     * @param string $command
+     * @param Command $command
      * @param string $masterCommand
      */
-    public function addCommandToChain($command, $masterCommand)
+    public function addCommandToChain(Command $command, $masterCommand)
     {
         $this->chains->set($masterCommand, $command);
     }
 
     /**
-     * @param $command
+     * @param Command $command
      * @return bool|\Oro\ChainCommandBundle\Model\CommandChain
      */
-    public function getChainByCommand($command)
+    public function getChainByCommand(Command $command)
     {
         return $this->chains->hasCommand($command);
     }
