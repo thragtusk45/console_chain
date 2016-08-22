@@ -1,4 +1,6 @@
 services:
     oro_foo.standalone_command:
         class: Oro\FooBundle\Command\StandaloneCommand
+    oro_foo.hello_command:
+        class: Oro\FooBundle\Command\HelloCommand
 

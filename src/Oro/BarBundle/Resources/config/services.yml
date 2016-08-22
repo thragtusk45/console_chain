@@ -1,5 +1,5 @@
 services:
-    bye.command:
-        class: Oro\BarBundle\Command\ByeCommand
+    bar.hi_command:
+        class: Oro\BarBundle\Command\HiCommand
         tags:
-            - {name: oro_chain_command.command_chain.member, command_chain: bar:hello}
+            - {name: oro_chain_command.command_chain.member, command_chain: foo:hello}

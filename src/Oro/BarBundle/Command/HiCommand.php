@@ -13,7 +13,7 @@ class HiCommand extends Command
     {
         $this
             ->setName('bar:hi')
-            ->setDescription('Says hi');
+            ->setDescription('Says Hi from Bar');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
